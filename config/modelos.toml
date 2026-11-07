@@ -1,0 +1,243 @@
+# Catálogo de vias (onde o modelo roda) e modelos (variáveis de análise).
+#
+# Campos marcados "# conferir" vieram de memória e precisam ser confirmados na fonte oficial
+# antes da análise final (data de lançamento e corte de conhecimento entram em P5 e P7).
+# `uv run iac vias` lista os modelos que cada via realmente oferece hoje.
+#
+# Cotas gratuitas mudam com frequência: `rpm`/`rpd` aqui são TETOS que nós nos impomos,
+# abaixo do limite publicado. O executor também para ao receber 429 de cota diária.
+
+# ------------------------------------------------------------------ orçamento
+# Teto absoluto do projeto (decisão do usuário: zero como meta, US$ 30 como limite). O executor soma
+# todas as vias pagas e reserva o pior caso ANTES de cada chamada. Configure também o mesmo limite
+# como "hard limit" no painel de cada provedor pago (segunda trava, independente do código).
+[orcamento]
+teto_global_usd = 30.0
+
+# ------------------------------------------------------------------ vias
+# treina_com_dados: política declarada da via para o plano usado (conferir nos termos vigentes).
+# logprobs: a via devolve a probabilidade dos tokens (probabilidade interna da letra escolhida).
+
+[vias.ollama]
+base_url = "http://localhost:11434/v1"
+chave_env = ""            # local, sem chave
+rpm = 0                   # 0 = sem limite
+rpd = 0
+json_mode = true
+paga = false
+treina_com_dados = false
+logprobs = true
+
+[vias.groq]
+base_url = "https://api.groq.com/openai/v1"
+chave_env = "GROQ_API_KEY"
+rpm = 25
+rpd = 900
+tpd = 400000              # Groq limita tokens/dia por modelo; medir no piloto e ajustar
+json_mode = true
+paga = false
+treina_com_dados = false  # conferir termos vigentes
+
+[vias.gemini]
+base_url = "https://generativelanguage.googleapis.com/v1beta/openai"
+chave_env = "GEMINI_API_KEY"
+rpm = 8
+rpd = 200
+aceita_seed = false       # HTTP 400 "Unknown name seed" (15/10/2026)
+json_mode = true
+paga = false
+treina_com_dados = true   # nível gratuito da Gemini API usa os dados para melhorar produtos
+
+[vias.openrouter]
+base_url = "https://openrouter.ai/api/v1"
+chave_env = "OPENROUTER_API_KEY"
+rpm = 15
+rpd = 45
+json_mode = false         # nem todo modelo :free aceita response_format
+paga = false
+treina_com_dados = true   # depende do provedor por trás do :free; tratar como sim
+
+[vias.openai]
+base_url = "https://api.openai.com/v1"
+chave_env = "OPENAI_API_KEY"
+rpm = 60
+rpd = 0
+json_mode = true
+paga = true
+teto_usd = 4.8            # P1: depósito de US$ 5 (plano em patamares de 15/10); margem para arredondamento
+treina_com_dados = false  # API da OpenAI não treina com dados por padrão
+logprobs = true
+
+# ------------------------------------------------------------------ modelos locais (Ollama)
+# Linha histórica de pesos abertos: espinha dorsal de P5 (evolução) a custo zero.
+
+[[modelo]]
+slug = "llama2-7b"
+via = "ollama"
+nome_api = "llama2:7b"
+familia = "llama"
+fornecedor = "Meta"
+pesos = "aberto"
+parametros_b = 7
+data_lancamento = "2023-07-18"
+corte_conhecimento = "2022-09"     # conferir
+acesso_consumidor = "nenhum"
+quantizacao = "Q4_0"
+corte_fonte = "oficial"
+
+[[modelo]]
+slug = "llama3-8b"
+via = "ollama"
+nome_api = "llama3:8b"
+familia = "llama"
+fornecedor = "Meta"
+pesos = "aberto"
+parametros_b = 8
+data_lancamento = "2024-04-18"
+corte_conhecimento = "2023-03"     # conferir
+acesso_consumidor = "nenhum"
+
+[[modelo]]
+slug = "llama3.1-8b"
+via = "ollama"
+nome_api = "llama3.1:8b"
+familia = "llama"
+fornecedor = "Meta"
+pesos = "aberto"
+parametros_b = 8
+data_lancamento = "2024-07-23"
+corte_conhecimento = "2023-12"     # conferir
+acesso_consumidor = "nenhum"
+
+[[modelo]]
+slug = "mistral-7b-v0.3"
+via = "ollama"
+nome_api = "mistral:7b"
+familia = "mistral"
+fornecedor = "Mistral AI"
+pesos = "aberto"
+parametros_b = 7
+data_lancamento = "2024-05-22"
+corte_conhecimento = ""            # conferir
+acesso_consumidor = "nenhum"
+
+[[modelo]]
+slug = "qwen2.5-7b"
+via = "ollama"
+nome_api = "qwen2.5:7b"
+familia = "qwen"
+fornecedor = "Alibaba"
+pesos = "aberto"
+parametros_b = 7
+data_lancamento = "2024-09-19"
+corte_conhecimento = ""            # conferir
+acesso_consumidor = "nenhum"
+
+[[modelo]]
+slug = "qwen3-8b"
+via = "ollama"
+nome_api = "qwen3:8b"
+familia = "qwen"
+fornecedor = "Alibaba"
+pesos = "aberto"
+parametros_b = 8
+data_lancamento = "2025-04-29"
+corte_conhecimento = ""            # conferir
+acesso_consumidor = "nenhum"
+raciocinio = true
+
+[[modelo]]
+slug = "gemma2-9b"
+via = "ollama"
+nome_api = "gemma2:9b"
+familia = "gemma"
+fornecedor = "Google"
+pesos = "aberto"
+parametros_b = 9
+data_lancamento = "2024-06-27"
+corte_conhecimento = ""            # conferir
+acesso_consumidor = "nenhum"
+
+[[modelo]]
+slug = "gemma3-4b"
+via = "ollama"
+nome_api = "gemma3:4b"
+familia = "gemma"
+fornecedor = "Google"
+pesos = "aberto"
+parametros_b = 4
+data_lancamento = "2025-03-12"
+corte_conhecimento = ""            # conferir
+acesso_consumidor = "nenhum"
+
+# ------------------------------------------------------------------ APIs com cota gratuita
+# nome_api precisa existir na via HOJE: confirmar com `uv run iac vias` antes de rodar.
+
+# llama3.3-70b saiu da Groq (lista de 15/10/2026: gpt-oss-120b, gpt-oss-20b, qwen3.8-27b)
+[[modelo]]
+slug = "qwen3.8-27b"
+via = "groq"
+nome_api = "qwen/qwen3.8-27b"
+familia = "qwen"
+fornecedor = "Alibaba"
+pesos = "aberto"
+parametros_b = 27
+data_lancamento = ""               # conferir na página do modelo
+corte_conhecimento = ""            # conferir
+acesso_consumidor = "gratuito"     # Qwen Chat é gratuito — conferir qual modelo serve hoje
+raciocinio = true                 # família Qwen3 pensa antes de responder
+
+[[modelo]]
+slug = "gpt-oss-120b"
+via = "groq"
+nome_api = "openai/gpt-oss-120b"
+familia = "gpt"
+fornecedor = "OpenAI"
+pesos = "aberto"
+parametros_b = 120
+data_lancamento = "2025-08-05"
+corte_conhecimento = "2024-06"     # conferir
+acesso_consumidor = "nenhum"
+raciocinio = true
+
+[[modelo]]
+slug = "gemini-flash"
+via = "gemini"
+nome_api = "gemini-2.5-flash"      # conferir versão atual da cota gratuita
+familia = "gemini"
+fornecedor = "Google"
+pesos = "fechado"
+data_lancamento = "2025-06-17"     # conferir
+corte_conhecimento = "2025-01"     # conferir
+acesso_consumidor = "gratuito"     # modelo padrão do app Gemini sem assinatura — conferir
+raciocinio = true
+
+# ------------------------------------------------------------------ API paga (centavos)
+
+[[modelo]]
+slug = "gpt-3.5-turbo"
+via = "openai"
+nome_api = "gpt-3.5-turbo-0125"
+familia = "gpt"
+fornecedor = "OpenAI"
+pesos = "fechado"
+data_lancamento = "2024-01-25"
+corte_conhecimento = "2021-09"
+acesso_consumidor = "gratuito"     # foi o ChatGPT gratuito até 2024
+corte_fonte = "oficial"
+preco_in_usd_mtok = 0.50           # conferir na página de preços antes de rodar
+preco_out_usd_mtok = 1.50
+
+[[modelo]]
+slug = "gpt-4-0613"
+via = "openai"
+nome_api = "gpt-4-0613"
+familia = "gpt"
+fornecedor = "OpenAI"
+pesos = "fechado"
+data_lancamento = "2023-06-13"
+corte_conhecimento = "2021-09"
+corte_fonte = "oficial"
+acesso_consumidor = "pago"         # foi o modelo do ChatGPT Plus em 2023
+preco_in_usd_mtok = 30.0           # conferir na página de preços antes de rodar
+preco_out_usd_mtok = 60.0

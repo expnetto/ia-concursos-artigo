@@ -1,0 +1,12 @@
+modelo,familia,data_lancamento
+gemini-flash,gemini,2025-06-17
+gemma2-9b,gemma,2024-06-27
+gemma3-4b,gemma,2025-03-12
+gpt-oss-120b,gpt,2025-08-05
+llama2-7b,llama,2023-07-18
+llama3-8b,llama,2024-04-18
+llama3.1-8b,llama,2024-07-23
+mistral-7b-v0.3,mistral,2024-05-22
+qwen2.5-7b,qwen,2024-09-19
+qwen3-8b,qwen,2025-04-29
+qwen3.8-27b,qwen,

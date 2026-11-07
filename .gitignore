@@ -1,0 +1,14 @@
+# dados e segredos
+.env
+.env.*
+!.env.example
+data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# texto das provas e planilhas preenchidas com ele
+*.xlsx
