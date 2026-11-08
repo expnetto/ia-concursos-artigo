@@ -1,0 +1,81 @@
+{
+ "n": 400,
+ "divergencias_A_B": 190,
+ "A_x_B_disciplina": [
+  52.5,
+  0.4984
+ ],
+ "A_x_B_macroarea": [
+  74.0,
+  0.6652
+ ],
+ "consenso_x_modelo_disciplina": [
+  54.5,
+  0.5222
+ ],
+ "consenso_x_modelo_macroarea": [
+  68.5,
+  0.6099
+ ],
+ "acerto_modelo_disciplina_ic95": [
+  54.5,
+  49.6,
+  59.3,
+  400
+ ],
+ "acerto_modelo_macroarea_ic95": [
+  68.5,
+  63.8,
+  72.9,
+  400
+ ],
+ "acerto_por_macroarea_do_modelo_ic95": {
+  "direito": [
+   51.3,
+   42.3,
+   60.2,
+   115
+  ],
+  "gestao": [
+   88.9,
+   78.8,
+   94.5,
+   63
+  ],
+  "linguas": [
+   66.7,
+   48.8,
+   80.8,
+   30
+  ],
+  "matematica": [
+   26.5,
+   14.6,
+   43.1,
+   34
+  ],
+  "outras": [
+   88.7,
+   80.8,
+   93.5,
+   97
+  ],
+  "portugues": [
+   56.7,
+   39.2,
+   72.6,
+   30
+  ],
+  "ti": [
+   87.1,
+   71.1,
+   94.9,
+   31
+  ]
+ },
+ "criterio_kappa_macroarea_0_61": false,
+ "extracao": {
+  "n": 120,
+  "divergencias": 0
+ }
+}

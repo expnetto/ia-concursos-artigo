@@ -12,6 +12,10 @@
 - **Regressões mistas:** previstas nas hipóteses, foram executadas depois da análise descritiva.
 - **Proporção de erros com alta confiança**, análises por área, confiança no ENEM e comparação com usuários são exploratórias, fora das hipóteses H1 a H6.
 
+## Validação humana
+
+- **Critério não atingido:** o kappa entre o consenso humano e o modelo na macroárea foi 0,6099, abaixo do critério de 0,61 fixado no protocolo. Na disciplina, o acerto do modelo foi de 54,5%. O banco e os resultados não foram alterados por isso, como previsto; a comparação do bloco jurídico foi repetida só com disciplinas tiradas do cabeçalho do caderno. Detalhes em `validacao/README.md`.
+
 ## Coleta e amostras
 
 - O piloto de 60 questões rodou antes do registro das hipóteses e não faz parte das amostras do artigo.

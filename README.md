@@ -26,6 +26,8 @@ python analises/reproduz_resultados.py
 
 O script usa só `dados/`, leva poucos minutos e grava `resultados/resultados.json`. Ele reproduz a Tabela 4, a Tabela 5, H1, H2, H4, H6 e os números da seção 5.3 do artigo. A análise principal usa as 694 questões comuns com gabarito definitivo, conforme a regra registrada, e guarda a base com todas as questões como sensibilidade.
 
+As conferências humanas se recalculam com `python validacao/calcula_validacao.py`, e a sensibilidade do bloco jurídico com `python analises/sensibilidade_cabecalho.py`.
+
 ## Sistema
 
 ```bash
